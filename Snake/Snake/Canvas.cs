@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,8 +27,36 @@ namespace Snake
             tmrGame.Tick += Render;
             tmrGame.Start();
 
+            /* Keypress Timer */
+            tmrKeys.Interval = 15;
+            tmrKeys.Tick += Keypress;
+            tmrKeys.Start();
+
             /* Start game */
             StartGame();
+        }
+
+        private void Keypress(object sender, EventArgs e)
+        {
+            if (Game.GameOver)
+            {
+                if (Hook.KeyDown(Keys.Enter))
+                {
+                    StartGame();
+                }
+            }
+            else
+            {
+                if (Hook.KeyDown(Keys.D) && Game.direction != Direction.West)
+                    Game.direction = Direction.East;
+                else if (Hook.KeyDown(Keys.A) && Game.direction != Direction.East)
+                    Game.direction = Direction.West;
+                else if (Hook.KeyDown(Keys.S) && Game.direction != Direction.North)
+                    Game.direction = Direction.South;
+                else if (Hook.KeyDown(Keys.W) && Game.direction != Direction.South)
+                    Game.direction = Direction.North;
+            }
+
         }
 
         private void StartGame()
@@ -49,8 +77,8 @@ namespace Snake
 
         private void GenerateApple()
         {
-            int maximumX = pnlField.Size.Width / Game.Width;
-            int maximumY = pnlField.Size.Height / Game.Height;
+            int maximumX = pnlField.Size.Width / Game.Width - Game.AppleOffset;
+            int maximumY = pnlField.Size.Height / Game.Height- Game.AppleOffset;
 
             Random rnd = new Random();
             apple = new Square();
@@ -61,24 +89,8 @@ namespace Snake
 
         private void Render(object sender, EventArgs e)
         {
-            if (Game.GameOver)
+            if (!Game.GameOver)
             {
-                if (Hook.KeyDown(Keys.Enter))
-                {
-                    StartGame();
-                }
-            }
-            else
-            {
-                if (Hook.KeyDown(Keys.D) && Game.direction != Direction.West)
-                    Game.direction = Direction.East;
-                else if (Hook.KeyDown(Keys.A) && Game.direction != Direction.East)
-                    Game.direction = Direction.West;
-                else if (Hook.KeyDown(Keys.S) && Game.direction != Direction.North)
-                    Game.direction = Direction.South;
-                else if (Hook.KeyDown(Keys.W) && Game.direction != Direction.South)
-                    Game.direction = Direction.North;
-
                 MoveSnake();
             }
 
