@@ -1,4 +1,4 @@
-﻿namespace Snake
+namespace Snake
 {
     partial class Canvas
     {
@@ -33,6 +33,7 @@
             this.tmrGame = new System.Windows.Forms.Timer(this.components);
             this.pnlField = new System.Windows.Forms.Panel();
             this.lblHighscore = new System.Windows.Forms.Label();
+            this.tmrKeys = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblScore
@@ -51,7 +52,7 @@
             this.pnlField.BackColor = System.Drawing.Color.Black;
             this.pnlField.Location = new System.Drawing.Point(1, 26);
             this.pnlField.Name = "pnlField";
-            this.pnlField.Size = new System.Drawing.Size(481, 434);
+            this.pnlField.Size = new System.Drawing.Size(480, 483);
             this.pnlField.TabIndex = 1;
             this.pnlField.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlField_Paint);
             // 
@@ -71,7 +72,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(484, 510);
             this.Controls.Add(this.lblHighscore);
             this.Controls.Add(this.pnlField);
             this.Controls.Add(this.lblScore);
@@ -89,6 +90,7 @@
         private System.Windows.Forms.Timer tmrGame;
         private System.Windows.Forms.Panel pnlField;
         private System.Windows.Forms.Label lblHighscore;
+        private System.Windows.Forms.Timer tmrKeys;
     }
 }
 
