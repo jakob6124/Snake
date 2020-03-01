@@ -1,2 +1,2 @@
 # Snake
-A snake game I coded, because I felt like it.
+A simple Snake implementation with reliable input handling
